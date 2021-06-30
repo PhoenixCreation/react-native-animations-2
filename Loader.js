@@ -10,9 +10,8 @@ const defaultSettings = {
   },
 };
 
-// TODO: replace app-name wiht actual app name
-const KEY = "@app-name_settings";
-const FIRST_TIME_KEY = "@app-name_firsttime";
+const KEY = "@rna2_settings";
+const FIRST_TIME_KEY = "@rna2_firsttime";
 
 export const LoaderProvider = (props) => {
   const [loading, setLoading] = useState(true);

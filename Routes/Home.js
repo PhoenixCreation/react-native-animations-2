@@ -1,11 +1,21 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
+import { SLIDES } from "../Slides";
 
 const Home = ({ navigation }) => {
   return (
     <View>
-      <Text onPress={() => navigation.navigate("Second")}>Home</Text>
-      <View style={styles.check}></View>
+      {SLIDES.map((slide, index) => {
+        return (
+          <Pressable
+            onPress={() => navigation.navigate(slide.name)}
+            style={styles.cont}
+            key={index}
+          >
+            <Text>{slide.name}</Text>
+          </Pressable>
+        );
+      })}
     </View>
   );
 };
@@ -13,9 +23,15 @@ const Home = ({ navigation }) => {
 export default Home;
 
 const styles = StyleSheet.create({
-  check: {
-    backgroundColor: "red",
-    width: 100,
-    height: 100,
+  cont: {
+    width: "90%",
+    marginHorizontal: "5%",
+    height: 40,
+    alignItems: "center",
+    justifyContent: "center",
+    marginVertical: 10,
+    borderWidth: 1,
+    borderColor: "black",
+    borderRadius: 40,
   },
 });
