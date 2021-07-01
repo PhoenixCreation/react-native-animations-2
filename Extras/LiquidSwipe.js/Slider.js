@@ -25,9 +25,9 @@ const snapPoint = (value, velocity, points) => {
 const Slider = ({ index, setIndex, children, prev, next }) => {
   const hasPrev = !!prev;
   const hasNext = !!next;
-  const leftX = useSharedValue(MARGIN_WIDTH);
+  const leftX = useSharedValue(0);
   const leftY = useSharedValue(height / 1.3);
-  const rightX = useSharedValue(MARGIN_WIDTH);
+  const rightX = useSharedValue(0);
   const rightY = useSharedValue(height / 1.3);
   const activeSide = useSharedValue("none");
   const isTransitioningLeft = useSharedValue(false);
@@ -106,13 +106,43 @@ const Slider = ({ index, setIndex, children, prev, next }) => {
   }));
 
   useEffect(() => {
-    leftX.value = 0;
-    rightX.value = 0;
-    setTimeout(() => {
-      leftX.value = withSpring(MARGIN_WIDTH);
-      rightX.value = withSpring(MARGIN_WIDTH);
-    }, 300);
+    leftX.value = MARGIN_WIDTH;
+    rightX.value = MARGIN_WIDTH;
   }, [index, leftX, rightX]);
+
+  const goToNext = () => {
+    const isGoingRight = true;
+    isTransitioningRight.value = true;
+    rightX.value = withSpring(
+      width,
+      {
+        overshootClamping: isGoingRight ? true : false,
+        restSpeedThreshold: isGoingRight ? 100 : 0.01,
+        restDisplacementThreshold: isGoingRight ? 100 : 0.01,
+      },
+      () => {
+        runOnJS(setIndex)(index + 1);
+      }
+    );
+    rightY.value = withSpring(height / 1.3);
+  };
+
+  const goToPrevious = () => {
+    const isGoingLeft = true;
+    isTransitioningLeft.value = true;
+    leftX.value = withSpring(
+      width,
+      {
+        overshootClamping: isGoingLeft ? true : false,
+        restSpeedThreshold: isGoingLeft ? 100 : 0.01,
+        restDisplacementThreshold: isGoingLeft ? 100 : 0.01,
+      },
+      () => {
+        runOnJS(setIndex)(index - 1);
+      }
+    );
+    leftY.value = withSpring(height / 1.3);
+  };
 
   return (
     <PanGestureHandler onGestureEvent={onGestureEvent}>
@@ -125,6 +155,7 @@ const Slider = ({ index, setIndex, children, prev, next }) => {
               x={leftX}
               y={leftY}
               isTransitioning={isTransitioningLeft}
+              transferFunction={goToPrevious}
             >
               {prev}
             </Wave>
@@ -137,6 +168,7 @@ const Slider = ({ index, setIndex, children, prev, next }) => {
               x={rightX}
               y={rightY}
               isTransitioning={isTransitioningRight}
+              transferFunction={goToNext}
             >
               {next}
             </Wave>

@@ -27,7 +27,14 @@ const curve = (c1, c2, to) => {
 
 const MIN_LEDGE = MARGIN_WIDTH - 20;
 
-const Wave = ({ children, isLeft, x, y, isTransitioning }) => {
+const Wave = ({
+  children,
+  isLeft,
+  x,
+  y,
+  isTransitioning,
+  transferFunction,
+}) => {
   const R = useDerivedValue(() => {
     return Math.min(x.value - MIN_LEDGE, width / 3);
   });
@@ -115,6 +122,7 @@ const Wave = ({ children, isLeft, x, y, isTransitioning }) => {
             zIndex: 200,
           })
         }
+        onPress={() => transferFunction()}
       >
         <AnimatedPath
           fill="white"
