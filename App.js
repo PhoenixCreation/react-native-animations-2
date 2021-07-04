@@ -5,12 +5,14 @@ import { NavigationContainer } from "@react-navigation/native";
 import { LoaderProvider, LoaderContext } from "./Loader";
 import Home from "./Routes/Home";
 import { SLIDES } from "./Slides";
+import Navbar, { navigationRef } from "./Navbar";
 
 const app = () => {
   return (
     <LoaderProvider>
       <StatusBar hidden={true} />
       <Navigator />
+      {/* <Navbar /> */}
     </LoaderProvider>
   );
 };
@@ -25,7 +27,7 @@ const Navigator = () => {
   // if(firsttime) return
 
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       <Stack.Navigator
         screenOptions={{
           gestureEnabled: false,
