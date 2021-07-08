@@ -6,8 +6,20 @@ import { LoaderProvider, LoaderContext } from "./Loader";
 import Home from "./Routes/Home";
 import { SLIDES } from "./Slides";
 import Navbar, { navigationRef } from "./Navbar";
+import { useFonts } from "@use-expo/font";
+import AppLoading from "expo-app-loading";
+
+const FONTS = {
+  SourceCodePro: require("./assets/fonts/SourceCodePro-Regular.ttf"),
+  Tourney: require("./assets/fonts/Tourney.ttf"),
+  RobotoAdded: require("./assets/fonts/Roboto-Regular.ttf"),
+};
 
 const app = () => {
+  const [loaded] = useFonts(FONTS);
+
+  if (!loaded) return <AppLoading />;
+
   return (
     <LoaderProvider>
       <StatusBar hidden={true} />
