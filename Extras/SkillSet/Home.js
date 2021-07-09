@@ -102,7 +102,7 @@ const Home = ({ navigation }) => {
                 animation="fadeIn"
                 duration={500}
                 easing="ease"
-                delay={1800 + index * 200}
+                delay={1000 + index * 200}
                 useNativeDriver
                 style={styles.optionCont}
                 key={index}
@@ -118,7 +118,7 @@ const Home = ({ navigation }) => {
           animation={card1Animation}
           duration={750}
           easing="ease"
-          delay={3000}
+          delay={1500}
           useNativeDriver
           style={[styles.bottomCard, styles.bottomFirst]}
           onPress={() => {
@@ -132,7 +132,7 @@ const Home = ({ navigation }) => {
           animation={card2Animation}
           duration={750}
           easing="ease"
-          delay={3500}
+          delay={2000}
           useNativeDriver
           style={[styles.bottomCard, styles.bottomSecond]}
           onPress={() => {
@@ -146,7 +146,7 @@ const Home = ({ navigation }) => {
           animation={card3Animation}
           duration={750}
           easing="ease"
-          delay={3900}
+          delay={2500}
           useNativeDriver
           style={[styles.bottomCard, styles.bottomThird]}
           onPress={() => {
