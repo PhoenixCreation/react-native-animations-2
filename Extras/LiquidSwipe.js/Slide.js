@@ -8,12 +8,7 @@ const Slide = ({ slide }) => {
   const lighterColor = Color(slide.color).lighten(0.8).toString();
   return (
     <>
-      <Svg
-        style={[
-          StyleSheet.absoluteFill,
-          { borderWidth: 1, borderColor: "red", zIndex: 0 },
-        ]}
-      >
+      <Svg style={[StyleSheet.absoluteFill]}>
         <Defs>
           <RadialGradient id="gradient" cx="50%" cy="35%">
             <Stop offset="0%" stopColor={lighterColor} />

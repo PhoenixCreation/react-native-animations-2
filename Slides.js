@@ -1,6 +1,6 @@
 import LiquidSwipe from "./Routes/LiquidSwipe";
 import Second from "./Routes/Second";
-import Third from "./Routes/Third";
+import SkillSet from "./Routes/SkillSet";
 
 export const SLIDES = [
   {
@@ -12,7 +12,7 @@ export const SLIDES = [
     component: Second,
   },
   {
-    name: "Third",
-    component: Third,
+    name: "SkillSet",
+    component: SkillSet,
   },
 ];
